@@ -8,14 +8,12 @@ class Bullet(BaseObject):
 		# The image that will rotate for prevent pixel's get weird
 		self.original_img = self.image
 		self.speed = 8
-		self.angle = 0
 		self.direction = pygame.Vector2(1, 0)
 
 	def move(self) -> None:
 		self.position.x += self.speed * self.direction.x 
 		self.position.y += self.speed * self.direction.y
 
-	def rotate_image(self) -> None:
-		self.angle += 45
-		self.image = pygame.transform.rotate(self.original_img, self.angle)
+	def rotate_image(self, angle) -> None:
+		self.image = pygame.transform.rotate(self.original_img, angle)
 		

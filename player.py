@@ -7,6 +7,8 @@ class Player(BaseObject):
 	def __init__(self, x, y, img_path: str, speed) -> None:
 		super().__init__(x, y, img_path)
 		self.speed = speed
+		self.bullets_limit = 3
+		self.bullets = 0
 
 	def move(self, keys, width, height) -> None:
 		if keys[K_a] and self.position.x > 0:
@@ -17,3 +19,6 @@ class Player(BaseObject):
 			self.position.y -= self.speed
 		if keys[K_s] and self.position.y + self.position.height < height:
 			self.position.y += self.speed
+
+	def reload(self):
+		self.bullets = 0

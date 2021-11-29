@@ -1,10 +1,10 @@
 # Todos
 
 Player
-- [ ] Be killed by enemy
+- [ ] Be killed by an enemy
 - [ ] Shoot in the 8 way direction
-- [ ] Shoot limit
-- [ ] Shoot reload
+- [x] Shoot limit
+- [x] Shoot reload
 
 Bullet
 - [ ] Rotate the bullet acording with the given angle
