@@ -7,7 +7,7 @@ class Player(BaseObject):
 	def __init__(self, x, y, img_path: str, speed) -> None:
 		super().__init__(x, y, img_path)
 		self.speed = speed
-		self.bullets_limit = 300
+		self.bullets_limit = 3
 		self.bullets = 0
 
 	def move(self, keys, width, height) -> None:
