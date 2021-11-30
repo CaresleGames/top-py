@@ -1,8 +1,10 @@
 import pygame, sys
 from pygame.locals import *
+
 from utils import calculate_angle
 from player import Player
 from bullet import Bullet
+
 pygame.init()
 
 WIDTH, HEIGHT = 800, 600
@@ -33,15 +35,26 @@ def main():
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				mouse = pygame.mouse.get_pressed()
 				if mouse[0] and player.bullets < player.bullets_limit:
+					# Position for calculate the angle
 					pos_x = pygame.mouse.get_pos()[0] - player.position.x
 					pos_y = pygame.mouse.get_pos()[1] - player.position.y
 					deg = calculate_angle(pos_x, pos_y)
+					# Multiply for -1 for get the correct angle
+					bullet.angle = deg * -1
+					bullet.moving = True
+					
+					bullet.position.x = player.position.x
+					bullet.position.y = player.position.y
+					
 					bullet.rotate_image(deg)
 					player.bullets += 1
 			
 		keys = pygame.key.get_pressed()
 		player.move(keys, WIDTH, HEIGHT)
-
+		
+		if bullet.moving:
+			bullet.move()
+		
 		# Draw
 		screen.fill((0, 0, 0))
 		player.draw(screen)

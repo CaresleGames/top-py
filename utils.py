@@ -11,7 +11,9 @@ def check_collision(rect1 : pygame.Rect, rect2 : pygame.Rect) -> bool:
 		return True
 	return False
 
+
 def calculate_angle(pos_x, pos_y) -> float:
 	deg = math.atan2(pos_y, pos_x)
+	# Multiply for -1 for rotate correct the image
 	deg = math.degrees(deg) * -1
 	return deg

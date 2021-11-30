@@ -2,15 +2,15 @@
 
 Player
 - [ ] Be killed by an enemy
-- [ ] Shoot in the 8 way direction
+- [x] Shoot in the 8 way direction
 - [x] Shoot limit
 - [x] Shoot reload
 
 Bullet
 - [x] Rotate the bullet acording with the given angle
   - [x] Get the angle from player position and mouse position
-- [ ] Move bullet acording with the correct direction
-  - [ ] Get the direction with the player position and mouse position
+- [x] Move bullet acording with the correct direction
+  - [x] Get the direction with the player position and mouse position
 
 Enemy
 
