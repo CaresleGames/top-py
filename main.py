@@ -4,7 +4,7 @@ from pygame.locals import *
 from utils import calculate_angle
 from player import Player
 from bullet import Bullet
-
+from enemy import Enemy
 pygame.init()
 
 WIDTH, HEIGHT = 800, 600
@@ -14,9 +14,14 @@ pygame.display.set_caption("Limited space")
 clock : pygame.time.Clock = pygame.time.Clock()
 FPS = 60
 
-player = Player(25, 25, "16x16.png", 6)
+player = Player(WIDTH // 2 - 8, HEIGHT // 2 - 8, "16x16.png", 6)
+
+# Bullets
 bullets = []
 last_bullet = 0
+
+# Enemy
+enemy = Enemy(400, 400, "enemy.png")
 
 def main():
 	run = True
@@ -60,6 +65,8 @@ def main():
 		keys = pygame.key.get_pressed()
 		player.move(keys, WIDTH, HEIGHT)
 		
+		enemy.move(player)
+
 		# Draw
 		screen.fill((0, 0, 0))
 		player.draw(screen)
@@ -69,6 +76,7 @@ def main():
 				bullet.move()
 			if bullet.is_on_screen:
 				bullet.draw(screen)
+		enemy.draw(screen)
 		pygame.display.update()
 
 

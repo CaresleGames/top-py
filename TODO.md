@@ -20,7 +20,11 @@ Bullet system
 
 Enemy
 
+- [ ] Create enemy on screen
+  - [ ] Random position on the screen borders
+  - [ ] Fill an array of enemy before start the game
 - [ ] Go to the player position
+- [ ] When enemy gets killed, moved out of screen instead of destroy
 - [ ] Increase the speed
 
 Limit
