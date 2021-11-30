@@ -1,5 +1,6 @@
-import pygame, sys, math
+import pygame, sys
 from pygame.locals import *
+from utils import calculate_angle
 from player import Player
 from bullet import Bullet
 pygame.init()
@@ -34,9 +35,7 @@ def main():
 				if mouse[0] and player.bullets < player.bullets_limit:
 					pos_x = pygame.mouse.get_pos()[0] - player.position.x
 					pos_y = pygame.mouse.get_pos()[1] - player.position.y
-					rad =  math.cos(pos_x)
-					deg = math.degrees(rad)
-					print(pos_x, pos_y, deg)
+					deg = calculate_angle(pos_x, pos_y)
 					bullet.rotate_image(deg)
 					player.bullets += 1
 			

@@ -7,8 +7,8 @@ Player
 - [x] Shoot reload
 
 Bullet
-- [ ] Rotate the bullet acording with the given angle
-  - [ ] Get the angle from player position and mouse position
+- [x] Rotate the bullet acording with the given angle
+  - [x] Get the angle from player position and mouse position
 - [ ] Move bullet acording with the correct direction
   - [ ] Get the direction with the player position and mouse position
 
