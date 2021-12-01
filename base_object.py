@@ -10,3 +10,12 @@ class BaseObject:
 
 	def draw(self, screen : pygame.Surface) -> None:
 		screen.blit(self.image, self.position)
+
+	def on_screen(self, width = 800, height = 600) -> bool:
+		if (
+			self.position.x >= 0 and self.position.x <= width
+			and self.position.y >= 0 and self.position.y <= height
+		):
+			return True
+		return False
+		

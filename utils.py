@@ -8,8 +8,8 @@ def check_collision(rect1 : pygame.Rect, rect2 : pygame.Rect) -> bool:
 		or rect1.y > rect2.y + rect2.height
 		or rect1.y + rect1.height < rect2.y
 	):
-		return True
-	return False
+		return False
+	return True
 
 
 def calculate_angle(pos_x, pos_y) -> float:

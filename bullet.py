@@ -27,13 +27,3 @@ class Bullet(BaseObject):
 
 	def rotate_image(self, angle) -> None:
 		self.image = pygame.transform.rotate(self.original_img, angle)
-
-
-	def on_screen(self, width = 800, height = 600) -> bool:
-		if (
-			self.position.x >= 0 and self.position.x <= width
-			and self.position.y >= 0 and self.position.y <= height
-		):
-			return True
-		return False
-		
