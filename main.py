@@ -84,7 +84,7 @@ def main():
 
 		for bullet in bullets:
 			if bullet.moving:
-				
+				# Check collision with enemies
 				for enemy in enemies:
 					if check_collision(enemy.position, bullet.position):
 						enemy.send_out()
@@ -95,6 +95,7 @@ def main():
 			
 		for enemy in enemies:
 			if enemy.on_screen():
+				enemy.move(player)
 				enemy.draw(screen)
 				
 		pygame.display.update()

@@ -5,31 +5,34 @@ from base_object import BaseObject
 class Enemy(BaseObject):
 	def __init__(self, x, y, img_path: str) -> None:
 		super().__init__(x, y, img_path)
-		self.init_speed = 0.1
+		self.init_speed = 2
 		self.speed = self.init_speed
 		self.direction = pygame.Vector2(1, 1)
 		self.is_alive = True
 
 	def move(self, player):
-		pos_x = self.position.x - player.position.x
-		pos_y = self.position.y - player.position.y
+		pos_x = player.position.x - self.position.x
+		pos_y = player.position.y - self.position.y
 		self.update_direction(pos_x, pos_y)
+		
 		self.position.x += self.speed * self.direction.x
 		self.position.y += self.speed * self.direction.y
 
 	def update_direction(self, x, y):
-		if x > 0:
-			self.direction.x = -1
-		if x < 0:
+		if x > 10:
 			self.direction.x = 1
-		if x == 0:
+		elif x < -10:
+			self.direction.x = -1
+		else:
 			self.direction.x = 0
-		if y > 0:
-			self.direction.y = -1
-		if y < 0:
+
+		if y > 10:
 			self.direction.y = 1
-		if y == 0:
+		elif y < -10:
+			self.direction.y = -1
+		else:
 			self.direction.y = 0
+
 
 	# Send the enemy outside of the screen viewports
 	def send_out(self):

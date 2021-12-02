@@ -8,7 +8,7 @@ Enemy
 - [ ] Create enemy on screen
   - [x] Random position on the screen borders
   - [x] Fill an array of enemy before start the game
-- [ ] Go to the player position
+- [x] Go to the player position
 - [ ] When enemy gets killed, moved out of screen instead of destroy
 - [ ] Increase the speed
 - [x] If collide with a bullet, move out of screen
