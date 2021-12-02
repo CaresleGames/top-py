@@ -40,10 +40,14 @@ class Enemy(BaseObject):
 		self.position.y = -200
 	
 	# Set a new random position between x and y
-	def random_position(self, x, y):
+	def random_position(self, x=800, y=600):
 		self.position.x = random.randrange(0, x)
 		self.position.y = random.randrange(0, y)
 		print(self.position)
 
 	def increase_speed(self):
-		self.speed += 0.1
+		self.speed += 0.25
+
+	def restart(self):
+		self.speed = self.init_speed
+		self.random_position()

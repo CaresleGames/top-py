@@ -1,7 +1,4 @@
-# Todos
-
-Player
-- [ ] Be killed by an enemy
+# Todos 
 
 Enemy
 

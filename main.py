@@ -49,6 +49,9 @@ def main():
 					player.reload()
 					print("reload")
 					enemies[0].random_position(WIDTH, HEIGHT)
+				if event.key == pygame.K_SPACE:
+					player.restart()
+					enemies[0].restart()
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				mouse = pygame.mouse.get_pressed()
@@ -87,6 +90,7 @@ def main():
 				# Check collision with enemies
 				for enemy in enemies:
 					if check_collision(enemy.position, bullet.position):
+						enemy.increase_speed()
 						enemy.send_out()
 
 				bullet.move()
@@ -95,6 +99,8 @@ def main():
 			
 		for enemy in enemies:
 			if enemy.on_screen():
+				if check_collision(enemy.position, player.position):
+					player.is_alive = False
 				enemy.move(player)
 				enemy.draw(screen)
 				

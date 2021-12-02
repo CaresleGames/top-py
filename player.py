@@ -6,6 +6,8 @@ class Player(BaseObject):
 
 	def __init__(self, x, y, img_path: str, speed) -> None:
 		super().__init__(x, y, img_path)
+		self.init_x = x
+		self.init_y = y
 		self.speed = speed
 		self.bullets_limit = 3
 		self.bullets = 0
@@ -24,3 +26,9 @@ class Player(BaseObject):
 
 	def reload(self):
 		self.bullets = 0
+
+	def restart(self):
+		self.position.x = self.init_x
+		self.position.y = self.init_y
+		self.bullets = 0
+		self.is_alive = True
