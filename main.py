@@ -34,6 +34,7 @@ def main():
 	for n in range(0, 20):
 		e = Enemy(-300, -300, "enemy.png")
 		enemies.append(e)
+	enemies[0].random_position(WIDTH, HEIGHT)
 
 	while run:
 		clock.tick(FPS)
@@ -83,10 +84,15 @@ def main():
 
 		for bullet in bullets:
 			if bullet.moving:
+				
+				for enemy in enemies:
+					if check_collision(enemy.position, bullet.position):
+						enemy.send_out()
+
 				bullet.move()
 			if bullet.is_on_screen:
 				bullet.draw(screen)
-
+			
 		for enemy in enemies:
 			if enemy.on_screen():
 				enemy.draw(screen)

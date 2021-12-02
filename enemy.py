@@ -41,3 +41,6 @@ class Enemy(BaseObject):
 		self.position.x = random.randrange(0, x)
 		self.position.y = random.randrange(0, y)
 		print(self.position)
+
+	def increase_speed(self):
+		self.speed += 0.1

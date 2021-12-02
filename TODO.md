@@ -11,6 +11,7 @@ Enemy
 - [ ] Go to the player position
 - [ ] When enemy gets killed, moved out of screen instead of destroy
 - [ ] Increase the speed
+- [x] If collide with a bullet, move out of screen
 
 Limit
 - [ ] Create screen borders
