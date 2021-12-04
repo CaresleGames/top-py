@@ -11,7 +11,7 @@ pygame.init()
 
 WIDTH, HEIGHT = 800, 600
 screen : pygame.Surface = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Limited space")
+pygame.display.set_caption("Top py")
 
 clock : pygame.time.Clock = pygame.time.Clock()
 FPS = 60
@@ -24,17 +24,27 @@ last_bullet = 0
 
 # Enemy
 enemies : List[Enemy] = []
+last_enemy = 0
+# Timer
+pygame.time.set_timer(pygame.USEREVENT, 1000)
+
+# Font
+font = pygame.font.Font("assets/KenneyPixelSquare.ttf", 16)
 
 def main():
 	run = True
 	global last_bullet
+	global last_enemy
+
 	for n in range(0, 20):
 		b = Bullet(-100, -100, "bullet.png")
 		bullets.append(b)
-	for n in range(0, 20):
+	for n in range(0, 5):
 		e = Enemy(-300, -300, "enemy.png")
 		enemies.append(e)
-	enemies[0].random_position(WIDTH, HEIGHT)
+	game_end = False
+	
+	score = 0
 
 	while run:
 		clock.tick(FPS)
@@ -47,11 +57,16 @@ def main():
 			if event.type == pygame.KEYDOWN:
 				if event.key == pygame.K_r:
 					player.reload()
-					print("reload")
-					enemies[0].random_position(WIDTH, HEIGHT)
-				if event.key == pygame.K_SPACE:
+				if event.key == pygame.K_SPACE and game_end:
 					player.restart()
-					enemies[0].restart()
+					for enemy in enemies:
+						enemy.restart()
+					game_end = False
+			
+			if event.type == pygame.USEREVENT:
+				if last_enemy < len(enemies) - 1:
+					enemies[last_enemy].random_position(WIDTH, HEIGHT)
+					last_enemy += 1
 
 			if event.type == pygame.MOUSEBUTTONDOWN:
 				mouse = pygame.mouse.get_pressed()
@@ -78,12 +93,18 @@ def main():
 		keys = pygame.key.get_pressed()
 		
 		player.move(keys, WIDTH, HEIGHT)
-	
 
 		# Draw
 		screen.fill((0, 0, 0))
 		if player.is_alive:
 			player.draw(screen)
+
+			for enemy in enemies:
+				if check_collision(enemy.position, player.position):
+					player.is_alive = False
+					game_end = True
+				enemy.move(player)
+				enemy.draw(screen)
 
 		for bullet in bullets:
 			if bullet.moving:
@@ -92,18 +113,19 @@ def main():
 					if check_collision(enemy.position, bullet.position):
 						enemy.increase_speed()
 						enemy.send_out()
-
+						score += 1
 				bullet.move()
+
 			if bullet.is_on_screen:
 				bullet.draw(screen)
-			
-		for enemy in enemies:
-			if enemy.on_screen():
-				if check_collision(enemy.position, player.position):
-					player.is_alive = False
-				enemy.move(player)
-				enemy.draw(screen)
-				
+
+		if not game_end:
+			score_text = font.render(f"Score: {score}", False, (255, 255, 255))
+			screen.blit(score_text, (0, 0))
+		else:
+			text = font.render("Game Over", False, (255, 255, 255))
+			screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
+
 		pygame.display.update()
 
 
