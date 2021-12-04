@@ -6,6 +6,9 @@ A top down prototype game.
 
 ## Controls
 `WASD` - Move.
+
 `Left click` - Shoot
+
 `R` - Reload
+
 `Space` - Restart the game
